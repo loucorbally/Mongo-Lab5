@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
 
 //Here we are configuring express to use body-parser as middle-ware. 
 app.use(bodyParser.urlencoded({ extended: false })); 
@@ -28,6 +30,13 @@ app.post('/api/posts', function(req, res){
     console.log("post successful");
     console.log(req.body.title);
     console.log(req.body.content);
+
+    PostModel.create({
+        title: req.body.title,
+        content: req.body.content
+    });
+
+
 })
 
 app.get('/api/posts', function(req, res){
@@ -56,3 +65,15 @@ var server = app.listen(8081, function () {
    
    console.log("Example app listening at http://%s:%s", host, port)
 })
+
+var mongoDB = 'mongodb://admin:hello123@ds137863.mlab.com:37863/datarepdatabase';
+mongoose.connect(mongoDB);
+
+var Schema = mongoose.Schema;
+//define schema
+
+var postSchema = new Schema({
+title: String,
+content: String
+})
+var PostModel = mongoose.model('Post', postSchema);
