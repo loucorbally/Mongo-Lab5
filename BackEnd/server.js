@@ -41,21 +41,10 @@ app.post('/api/posts', function(req, res){
 
 app.get('/api/posts', function(req, res){
 
-    const posts = 
-    [
-        { 
-            "id": "fadf12421l", 
-            "title": "First server-side post", 
-            "content": "This is coming from the server" 
-        }, 
-        { 
-            "id": "ksajflaj132", 
-            "title": "Second server-side post", 
-            "content": "This is coming from the server!" 
-        }
-    ];
 
-    res.status(200).json({posts:posts})
+    PostModel.find(function(err, data){
+        res.json(data);
+    })
 })
 
 
