@@ -1,11 +1,5 @@
 
- <!-- <ul>
-  <li *ngFor="let p of posts">
-      
-     <p>{{p.title}}</p>
-     <p>{{p.content}}</p>
-     <p><button>Edit</button><button>Delete</button></p>
-</ul>  -->
+
 
 <mat-toolbar color="primary">Posts List</mat-toolbar>
 <mat-accordion multi="true" *ngIf="posts.length > 0">
@@ -16,7 +10,7 @@
     <p>{{ post.content }}</p>
     <mat-action-row>
       <button mat-button color="primary">EDIT</button>
-      <button mat-button color="warn">DELETE</button>
+      <button mat-button (click)="onDelete(post._id)"  color="warn">DELETE</button>
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>

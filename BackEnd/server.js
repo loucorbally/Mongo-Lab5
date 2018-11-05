@@ -11,8 +11,8 @@ app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
     next();
     });
     
@@ -46,6 +46,14 @@ app.get('/api/posts', function(req, res){
         res.json(data);
     })
 })
+
+app.delete('/api/posts/:id', function(req,res) {
+    console.log("Deleting item"+ req.params.id)
+    PostModel.deleteOne({_id: req.params.id},
+        function(err){});
+})
+
+
 
 
 var server = app.listen(8081, function () {
