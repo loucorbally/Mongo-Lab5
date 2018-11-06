@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PostService} from '../services/post.service';
 import { Observable } from 'rxjs';
 import {Post} from '../post.model';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 @Component({
   selector: 'app-post-details',
   templateUrl: './post-details.component.html',
@@ -22,8 +22,12 @@ export class PostDetailsComponent implements OnInit {
     });
     }
     onDelete(id:String){
-      this.ps.deletePost(id).subscribe() 
-        this.ngOnInit();
+      console.log(id);
+      this.ps.deletePost(id).subscribe((delete_result)=> {
+        console.error("Deleted ITEM ")
+        
+      })
+        
       }
     }
     
